@@ -13,7 +13,9 @@
             <div rv-each-cell="model.cells" rv-html="cell.data | hidezero"></div>
         </div>
         <div class="buttons">
-            <button rv-each-button="model.buttons" rv-html="button" rv-on-click="model.operate"></button>
+            <button rv-each-button="model.buttons" rv-on-click="model.operate">
+                <span rv-html="button"></span>
+            </button>
         </div>
     </div>
     <script type="text/javascript" src="bower_components/rivets/dist/rivets.bundled.min.js"></script>

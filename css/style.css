@@ -13,7 +13,7 @@ body {
 #view {
     width: 530px;
     height: 530px;
-    margin: auto;
+    margin: 100px auto;
 }
 
 .wrapper {
@@ -36,12 +36,35 @@ body {
 }
 
 .buttons {
-    width: 100%;
+    width: 200px;
     height: 200px;
     display: flex;
+    margin: auto;
     justify-content: space-around;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
+    transform: rotate(45deg) translate(24px, 30px);
 }
-.buttons > button{
-    width:45%;
+
+.buttons > button {
+    width: 45%;
+    height: 45%;
+    border-radius: 100%;
+    border: 5px solid #81d4fa;
+    outline:none;
+}
+.buttons > button:hover {
+    border-color:#0277bc;
+}
+.buttons > button:nth-of-type(2) {
+    order:4
+}
+.buttons > button:nth-of-type(3) {
+    order:3
+}
+button > span {
+    display: block;
+    transform: rotate(-45deg);
+    font-size:28px;
+    font-weight:bold;
+    color:#333;
 }
