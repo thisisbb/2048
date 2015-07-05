@@ -102,9 +102,19 @@ define(function() {
         });
         return matrix;
     }
+    //[[],[],[],[]] ---> [,,,,,,,,]
+    function concatenate(array) {
+        console.log(array);
+        array = array.join(",").split(",").map(function(el) {
+            return parseInt(el, 10);
+        })
+        console.log(array);
+        return array;
+    }
+
 
     return {
-        Cell:Cell,
+        Cell: Cell,
         fillMain: fillMain,
         getRandomCoord: getRandomCoord,
         twoOrFour: twoOrFour,
@@ -114,7 +124,8 @@ define(function() {
         getData: getData,
         arrayToMatrix: arrayToMatrix,
         shiftReduceRight: shiftReduceRight,
-        shiftReduceLeft: shiftReduceLeft
+        shiftReduceLeft: shiftReduceLeft,
+        concatenate: concatenate
 
     };
 

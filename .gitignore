@@ -1,2 +1,2 @@
-bower_components/
-.c9/
+bower_components/*
+.c9/*

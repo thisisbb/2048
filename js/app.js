@@ -7,16 +7,16 @@ requirejs.config({
 });
 
 define(['rivets', './utils'], function(rivets, utils) {
-
+//binder
     rivets.binders.startvalue = function(element, value) {
         addNewData();
     }
+//formatter    
     rivets.formatters.hidezero = function(value) {
         if (value !== 0)
             return value;
         else return;
     }
-
 
     var view = document.querySelector("#view");
 
@@ -39,39 +39,27 @@ define(['rivets', './utils'], function(rivets, utils) {
             switch (way) {
                 case 0:
                     //up
-                    // [,,,,,,,,] ---> [[],[],[],[]] + транспонируем матрицу
                     var matrixTransp = utils.transponation(utils.arrayToMatrix(utils.getData(viewModel.cells)));
                     matrixTransp = utils.shiftReduceRight(matrixTransp);
-                    //транспонируем обратно
-                    viewModel.cells = utils.fillMain(utils.transponation(matrixTransp).join(",").split(",").map(function(el) {
-                        return parseInt(el, 10); //[[],[],[],[]] ---> [,,,,,,,,]
-                    }));
+                    viewModel.cells = utils.fillMain(utils.concatenate(utils.transponation(matrixTransp)));
                     break;
                 case 1:
                     //down
-                    //транспонируем матрицу
                     var matrixTransp = utils.transponation(utils.arrayToMatrix(utils.getData(viewModel.cells)));
                     matrixTransp = utils.shiftReduceLeft(matrixTransp)
-                        //транспонируем обратно
-                    viewModel.cells = utils.fillMain(utils.transponation(matrixTransp).join(",").split(",").map(function(el) {
-                        return parseInt(el, 10);
-                    }));
+                    viewModel.cells = utils.fillMain(utils.concatenate(utils.transponation(matrixTransp)));
                     break;
                 case 2:
                     //left
                     var matrix = utils.arrayToMatrix(utils.getData(viewModel.cells));
                     matrix = utils.shiftReduceRight(matrix);
-                    viewModel.cells = utils.fillMain(matrix.join(",").split(",").map(function(el) {
-                        return parseInt(el, 10);
-                    }));
+                    viewModel.cells = utils.fillMain(utils.concatenate((matrix)));
                     break;
                 case 3:
                     //right
                     var matrix = utils.arrayToMatrix(utils.getData(viewModel.cells));
                     matrix = utils.shiftReduceLeft(matrix);
-                    viewModel.cells = utils.fillMain(matrix.join(",").split(",").map(function(el) {
-                        return parseInt(el, 10);
-                    }));
+                    viewModel.cells = utils.fillMain(utils.concatenate((matrix)));
                     break;
             }
         },
@@ -87,7 +75,6 @@ define(['rivets', './utils'], function(rivets, utils) {
     rivets.bind(view, {
         "model": viewModel
     });
-
 
 })
 
