@@ -60,13 +60,25 @@ function swap(array, a, b) {
     array[b] = temp;
 }
 
+function transponation(matrix) {
+    var matrixTransp = [
+        [],
+        [],
+        [],
+        []
+    ];
+    matrix.forEach(function(el) {
+        for (var i = 0; i < el.length; i++) {
+            matrixTransp[i].push(el[i]);
+        }
+    })
+    return matrixTransp;
+}
+
 
 var viewModel = {
     cells: fillMain(),
     buttons: ["up", "down", "left", "right"],
-
-
-
 
     operate: function(ev, el) {
 
@@ -74,12 +86,47 @@ var viewModel = {
 
             switch (way) {
                 case 0:
-                    console.log(way);
+                    /////////////////////////////////////////////0000000000000000000000
+                    var dataArray = viewModel.cells.map(function(el) {
+                        return el.data;
+                    });
+                    var partOfOrigin, matrix = [];
+                    for (var i = 0; i < 15; i += 4) {
+                        partOfOrigin = dataArray.slice(i, i + 4);
+                        matrix.push(partOfOrigin);
+                    }
+                    //транспонируем матрицу
+                    var matrixTransp = transponation(matrix);
+
+                    matrixTransp.forEach(function(el, index) {
+                        for (var j = el.length - 2; j >= 0; j--) {
+                            if (el[j] === 0) {
+                                swap(el, j + 1, j);
+                            }
+                            if (el[j + 1] === el[j]) {
+                                el[j] = el[j + 1] + el[j];
+                                el[j + 1] = 0;
+                            }
+                        }
+                    });
+                    console.log(JSON.stringify(matrixTransp));
+                    //транспонируем обратно
+                    var matrixDeTransp = transponation(matrixTransp);
+
+
+
+                    var t = fillMain(matrixDeTransp.join(",").split(",").map(function(el) {
+                        return parseInt(el, 10);
+                    }));
+
+                    viewModel.cells = t;
                     break;
                 case 1:
+                    ////////////////////////////////////////////111111111111111111111
                     console.log(way);
                     break;
                 case 2:
+                    ////////////////////////////////////////////////////222222222222!!!!!!!!!!
                     var dataArray = viewModel.cells.map(function(el) {
                         return el.data;
                     });
@@ -91,7 +138,7 @@ var viewModel = {
                     }
 
                     matrix.forEach(function(el, index) {
-                        for (var j = el.length-2; j >= 0 ; j--) {
+                        for (var j = el.length - 2; j >= 0; j--) {
                             console.log(j);
                             if (el[j] === 0) {
                                 swap(el, j + 1, j);
@@ -112,38 +159,35 @@ var viewModel = {
                     viewModel.cells = t;
                     break;
                 case 3:
-                    {
-                        var dataArray = viewModel.cells.map(function(el) {
-                            return el.data;
-                        });
-                        var partOfOrigin, matrix = [];
-                        for (var i = 0; i < 15; i += 4) {
-                            partOfOrigin = dataArray.slice(i, i + 4);
-                            matrix.push(partOfOrigin);
-                        }
+                    ////////////////////////////////////////////////////333333333333!!!!!!!!!!
 
-                        matrix.forEach(function(el, index) {
-                            for (var j = 1; j < el.length; j++) {
-                                if (el[j] === 0) {
-                                    swap(el, j - 1, j);
-                                }
-                                if (el[j - 1] === el[j]) {
-                                    el[j] = el[j - 1] + el[j];
-                                    el[j - 1] = 0;
-                                }
-                            }
-                        });
-
-
-                        var t = fillMain(matrix.join(",").split(",").map(function(el) {
-                            return parseInt(el, 10);
-                        }));
-
-
-
-                        viewModel.cells = t;
-                        break;
+                    var dataArray = viewModel.cells.map(function(el) {
+                        return el.data;
+                    });
+                    var partOfOrigin, matrix = [];
+                    for (var i = 0; i < 15; i += 4) {
+                        partOfOrigin = dataArray.slice(i, i + 4);
+                        matrix.push(partOfOrigin);
                     }
+
+                    matrix.forEach(function(el, index) {
+                        for (var j = 1; j < el.length; j++) {
+                            if (el[j] === 0) {
+                                swap(el, j - 1, j);
+                            }
+                            if (el[j - 1] === el[j]) {
+                                el[j] = el[j - 1] + el[j];
+                                el[j - 1] = 0;
+                            }
+                        }
+                    });
+
+                    var t = fillMain(matrix.join(",").split(",").map(function(el) {
+                        return parseInt(el, 10);
+                    }));
+
+                    viewModel.cells = t;
+                    break;
 
                 default:
                     // code
