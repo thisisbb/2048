@@ -13,6 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "rivets": "~0.8.1"
+    "rivets": "~0.8.1",
+    "requirejs": "~2.1.18"
   }
 }
