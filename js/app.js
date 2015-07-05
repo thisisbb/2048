@@ -1,5 +1,13 @@
-define(['./bower_components/rivets/dist/rivets.bundled.min.js', './utils'], function(rivets, utils) {
-    console.log(rivets).binders;
+requirejs.config({
+    paths: {
+        rivets: 'https://cdnjs.cloudflare.com/ajax/libs/rivets/0.8.1/rivets.min',
+        sightglass: 'https://cdn.rawgit.com/mikeric/sightglass/master/index'
+    },
+    shim: {}
+});
+
+define(['rivets', './utils'], function(rivets, utils) {
+
     rivets.binders.startvalue = function(element, value) {
         addNewData();
     }
@@ -8,6 +16,7 @@ define(['./bower_components/rivets/dist/rivets.bundled.min.js', './utils'], func
             return value;
         else return;
     }
+
 
     var view = document.querySelector("#view");
 
@@ -51,9 +60,7 @@ define(['./bower_components/rivets/dist/rivets.bundled.min.js', './utils'], func
                 case 2:
                     //left
                     var matrix = utils.arrayToMatrix(utils.getData(viewModel.cells));
-
                     matrix = utils.shiftReduceRight(matrix);
-
                     viewModel.cells = utils.fillMain(matrix.join(",").split(",").map(function(el) {
                         return parseInt(el, 10);
                     }));
@@ -80,9 +87,6 @@ define(['./bower_components/rivets/dist/rivets.bundled.min.js', './utils'], func
     rivets.bind(view, {
         "model": viewModel
     });
-
-
-
 
 
 })
