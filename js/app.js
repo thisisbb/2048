@@ -30,7 +30,7 @@ function getRandomCoord() {
 }
 
 function twoOrFour() {
-    if (Math.random() < 0.5) return 4;
+    if (Math.random() < 0.2) return 4;
     else return 2;
 }
 
