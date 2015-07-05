@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+    <div id="view">
+        <div class="wrapper" rv-startvalue>
+            <div rv-each-cell="model.cells" rv-html="cell.data | hidezero"></div>
+        </div>
+        <div class="buttons">
+            <button rv-each-button="model.buttons" rv-html="button" rv-on-click="model.operate"></button>
+        </div>
+    </div>
+    <script type="text/javascript" src="node_modules/rivets/dist/rivets.bundled.min.js"></script>
+    <script type="text/javascript" src="js/binders.js"></script>
+    <script type="text/javascript" src="js/formatters.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+
+</body>
+
+</html>
