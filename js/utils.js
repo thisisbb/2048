@@ -109,11 +109,9 @@ define(function() {
     }
     //[[],[],[],[]] ---> [,,,,,,,,]
     function concatenate(array) {
-        console.log(array);
         array = array.join(",").split(",").map(function(el) {
             return parseInt(el, 10);
         });
-        console.log(array);
         return array;
     }
 

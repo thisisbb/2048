@@ -13,8 +13,7 @@ define(['rivets', './utils'], function(rivets, utils) {
         addNewData();
     };
     rivets.binders.setcolor = function(el, value) {
-        console.log(typeof(value));
-            el.style.backgroundColor =  "hsl(" + value*25 + ", 60%, 70%)";
+        el.style.backgroundColor =  "hsl(" + value*25 + ", 60%, 70%)";
     };
 //formatter -- hides zeros    
     rivets.formatters.hidezero = function(value) {
