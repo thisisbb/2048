@@ -10,7 +10,7 @@
 <body>
     <div id="view">
         <div class="wrapper" rv-startvalue>
-            <div rv-each-cell="model.cells" rv-html="cell.data | hidezero"></div>
+            <div rv-each-cell="model.cells" rv-html="cell.data | hidezero" rv-setcolor="cell.data"></div>
         </div>
         <div class="buttons">
             <button rv-each-button="model.buttons" rv-on-click="model.operate">
